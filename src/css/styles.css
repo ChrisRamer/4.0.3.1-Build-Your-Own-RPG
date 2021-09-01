@@ -34,6 +34,13 @@ input[type="submit"] {
 	border-radius: 25px;
 }
 
+button {
+	background-color: rgb(91, 248, 99);
+	color: rgb(36, 36, 36);
+	border: 2px solid rgb(70, 70, 70);
+	border-radius: 25px;
+}
+
 #delete {
     background-color: rgb(255, 0, 0);
 	color: rgb(36, 36, 36);
