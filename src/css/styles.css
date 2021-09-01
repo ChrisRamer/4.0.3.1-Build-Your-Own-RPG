@@ -56,3 +56,11 @@ button {
 #subtitle {
 	color: grey;
 }
+
+.encounter {
+	display: none;
+}
+
+.pokemon-details {
+	display: none;
+}

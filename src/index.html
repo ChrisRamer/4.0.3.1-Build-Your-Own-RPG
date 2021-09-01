@@ -11,14 +11,28 @@
 
 <body>
 	<div class="container">
-		<div class="buttons">
-			<button class="btn-success" id="levelUp">Level up!</button>
-			<button class="btn-success" id="show-state">Current Stats</button>
-			<button class="btn-success" id="changeName">Change name</button>
+		<div class="intro">
+			<p>Welcome to this simple Pokemon game! </p>
+			<ul>
+				<li>Click "Walk through grass" to randomly trigger a wild</li>
+				<li>When in an encounter, you can fight or capture it.</li>
+				<li>Captured Pokemon will randomly level up during combat and randomly evolve.</li>
+			</ul>
 		</div>
-		<h1>Your Pokemon's Details</h1>
-		<h3>Level: <div id="level-value">0</div></h3>
-		<h3>Name: <div id="name-value">Unknown name</div></h3>
+		<div class="no-encounter">
+			<button class="btn-success" id="grass-walk">Walk through grass</button>
+		</div>
+		<div class="encounter">
+			<button class="btn-success" id="fight">Fight!</button>
+			<button class="btn-success" id="capture">Capture!</button>
+		</div>
+		<div class="pokemon-details">
+			<h1>Your Pokemon's Details</h1>
+			<h3>Level: <div id="level-value">0</div>
+			</h3>
+			<h3>Name: <div id="name-value">Unknown name</div>
+			</h3>
+		</div>
 	</div>
 </body>
 
