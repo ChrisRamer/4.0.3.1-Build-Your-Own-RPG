@@ -64,3 +64,17 @@ button {
 .pokemon-details {
 	display: none;
 }
+
+.post-encounter {
+	display: none;
+}
+
+#wild-pokemon-message {
+	font-weight: bold;
+	color: red;
+}
+
+#fight-result-message {
+	font-weight: bold;
+	color: red;
+}
