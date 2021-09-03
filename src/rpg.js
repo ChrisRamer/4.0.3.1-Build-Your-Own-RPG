@@ -44,6 +44,15 @@ $(document).ready(function () {
 			$("#wild-pokemon-message").text(`A wild ${randPokemon} appeared!`);
 			$(".no-encounter").hide();
 			$(".encounter").show();
+
+			if (typeof stateControl().name === "undefined") {
+				$("#fight").hide();
+			}
+			else
+			{
+				$("#fight").show();
+			}
+
 			console.log(`A wild ${randPokemon} appeared!`);
 		}
 		else
@@ -73,7 +82,6 @@ $(document).ready(function () {
 		const name = changeNameState("name")(randPokemon);
 		const newNameState = stateControl(name);
 		const level = changeLevelState("level")(Math.floor((Math.random() * 50) + 1));
-		console.table(level);
 		const newLevelState = stateControl(level);
 		$("#name-value").text(newNameState.name);
 		$("#level-value").text(newLevelState.level);
