@@ -9,11 +9,20 @@ const storeState = () => {
 
 const stateControl = storeState();
 
-const changeLevelState = (prop) => {
+const levelUpState = (prop) => {
 	return (value) => {
 		return (state) => ({
 			...state,
 			[prop]: (state[prop] || 0) + value
+		});
+	};
+};
+
+const levelChangeState = (prop) => {
+	return (value) => {
+		return (state) => ({
+			...state,
+			[prop]: (state[prop]) = value
 		});
 	};
 };
@@ -27,12 +36,13 @@ const changeNameState = (prop) => {
 	};
 };
 
-const levelUp = changeLevelState("level")(1);
+const levelUp = levelUpState("level")(1);
 
 $(document).ready(function () {
 
 	const allPokemon = ["Pikachu", "Mew", "Dragonite"]
-	let randPokemon;
+	let encounteredPokemon;
+	let encounteredLevel;
 
 	$("#grass-walk").click(function() {
 		$(".post-encounter").hide();
@@ -40,8 +50,9 @@ $(document).ready(function () {
 
 		if (encounterChance == 1)
 		{
-			randPokemon = allPokemon[Math.floor(Math.random() * allPokemon.length)];
-			$("#wild-pokemon-message").text(`A wild ${randPokemon} appeared!`);
+			encounteredPokemon = allPokemon[Math.floor(Math.random() * allPokemon.length)];
+			encounteredLevel = Math.floor((Math.random() * 50) + 1);
+			$("#wild-pokemon-message").text(`A wild lv ${encounteredLevel} ${encounteredPokemon} appeared!`);
 			$(".no-encounter").hide();
 			$(".encounter").show();
 
@@ -53,7 +64,7 @@ $(document).ready(function () {
 				$("#fight").show();
 			}
 
-			console.log(`A wild ${randPokemon} appeared!`);
+			console.log(`A wild ${encounteredPokemon} appeared!`);
 		}
 		else
 		{
@@ -79,29 +90,29 @@ $(document).ready(function () {
 
 	$("#capture").click(function() {
 		showFightResult("capture");
-		const name = changeNameState("name")(randPokemon);
+		const name = changeNameState("name")(encounteredPokemon);
 		const newNameState = stateControl(name);
-		const level = changeLevelState("level")(Math.floor((Math.random() * 50) + 1));
+		const level = levelChangeState("level")(encounteredLevel);
 		const newLevelState = stateControl(level);
 		$("#name-value").text(newNameState.name);
 		$("#level-value").text(newLevelState.level);
 		$(".pokemon-details").show();
-		console.log(`Captured ${randPokemon}!`);
+		console.log(`Captured ${encounteredPokemon}!`);
 	});
 
 	function showFightResult(result)
 	{
 		if (result == "hit")
 		{
-			$("#fight-result-message").text(`You defeated ${randPokemon}!`);
+			$("#fight-result-message").text(`You defeated ${encounteredPokemon}!`);
 		}
 		else if (result == "miss")
 		{
-			$("#fight-result-message").text(`Your attack missed! The ${randPokemon} fled!`);
+			$("#fight-result-message").text(`Your attack missed! The ${encounteredPokemon} fled!`);
 		}
 		else if (result == "capture")
 		{
-			$("#fight-result-message").text(`You captured ${randPokemon}!`);
+			$("#fight-result-message").text(`You captured ${encounteredPokemon}!`);
 		}
 		else if (result == "no encounter")
 		{
